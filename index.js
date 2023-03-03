@@ -30,6 +30,15 @@ const run = async () => {
       const recommendedTours = await recommendedToursData.find(query).toArray();
       res.send(recommendedTours);
     })
+    
+
+    // get recommended tours specific data in database.
+    app.get('/recommendedTours/:id', async (req, res)=>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)}
+      const recommendedTourDetails = await recommendedToursData.findOne(query);
+      res.send(recommendedTourDetails);
+    }) 
 
   }
   finally {
